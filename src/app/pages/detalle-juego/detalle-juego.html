@@ -1,0 +1,54 @@
+<section class="container py-5">
+  <a routerLink="/catalogo" class="btn btn-outline-secondary mb-4">
+    ← Volver al catálogo
+  </a>
+
+  <div *ngIf="juego; else noEncontrado" class="row g-5 align-items-center">
+    <div class="col-12 col-lg-6">
+      <img
+        [src]="juego.imagen"
+        class="img-fluid rounded-4 shadow detalle-img"
+        [alt]="'Imagen del juego ' + juego.nombre">
+    </div>
+
+    <div class="col-12 col-lg-6">
+      <span class="badge text-bg-primary mb-3">
+        {{ juego.categoria }}
+      </span>
+
+      <h1 class="fw-bold mb-3">
+        {{ juego.nombre }}
+      </h1>
+
+      <p class="lead text-muted">
+        {{ juego.descripcion }}
+      </p>
+
+      <p class="fs-3 fw-bold">
+        {{ juego.precio | currency:'CLP':'symbol':'1.0-0' }}
+      </p>
+
+      <p [ngClass]="juego.stock > 0 ? 'text-success fw-semibold' : 'text-danger fw-semibold'">
+        Stock disponible: {{ juego.stock }}
+      </p>
+
+      <div *ngIf="juego.destacado" class="alert alert-warning">
+        Este juego está destacado por la tienda.
+      </div>
+
+      <button class="btn btn-primary btn-lg" [disabled]="juego.stock === 0" (click)="agregarAlCarrito()">
+        Agregar al carrito
+      </button>
+
+      <div *ngIf="mensajeCarrito" class="alert alert-success mt-4">
+        {{ mensajeCarrito }}
+      </div>
+    </div>
+  </div>
+
+  <ng-template #noEncontrado>
+    <div class="alert alert-danger">
+      El juego solicitado no existe.
+    </div>
+  </ng-template>
+</section>

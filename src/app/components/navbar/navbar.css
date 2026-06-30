@@ -1,0 +1,36 @@
+.top-bar {
+  background: linear-gradient(90deg, #f59e0b, #facc15);
+  color: #1f2937;
+  font-size: 0.9rem;
+  font-weight: 600;
+  padding: 0.45rem 0;
+}
+
+.navbar {
+  background: #111827 !important;
+}
+
+.navbar-brand {
+  letter-spacing: -0.3px;
+}
+
+.brand-icon {
+  width: 34px;
+  height: 34px;
+  border-radius: 10px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: #f59e0b;
+  color: #111827;
+  font-size: 0.78rem;
+  font-weight: 800;
+}
+
+.nav-link {
+  font-weight: 500;
+}
+
+.nav-link.active {
+  color: #facc15 !important;
+}

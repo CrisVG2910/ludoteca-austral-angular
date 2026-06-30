@@ -1,0 +1,66 @@
+<section class="container py-5">
+  <div class="text-center mb-5">
+    <span class="badge text-bg-primary mb-3">Catálogo</span>
+    <h1 class="fw-bold">Elige tu próximo juego de mesa</h1>
+    <p class="text-muted">
+      Explora nuestra selección de juegos por nombre, categoría y disponibilidad.
+    </p>
+  </div>
+
+  <div class="card border-0 shadow-sm mb-4">
+    <div class="card-body">
+      <div class="row g-3 align-items-end">
+        <div class="col-12 col-md-6">
+          <label for="busqueda" class="form-label">Buscar juego</label>
+          <input
+            id="busqueda"
+            type="text"
+            class="form-control"
+            placeholder="Ej: Catan"
+            [(ngModel)]="busqueda">
+        </div>
+
+        <div class="col-12 col-md-4">
+          <label for="categoria" class="form-label">Categoría</label>
+          <select
+            id="categoria"
+            class="form-select"
+            [(ngModel)]="categoriaSeleccionada">
+            <option value="">Todas</option>
+            <option *ngFor="let categoria of categorias" [value]="categoria">
+              {{ categoria }}
+            </option>
+          </select>
+        </div>
+
+        <div class="col-12 col-md-2">
+          <button type="button" class="btn btn-outline-secondary w-100" (click)="limpiarFiltros()">
+            Limpiar
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="juegoSeleccionado" class="alert alert-info">
+    Juego seleccionado desde componente hijo:
+    <strong>{{ juegoSeleccionado.nombre }}</strong>
+  </div>
+
+  <div *ngIf="juegosFiltrados.length === 0" class="alert alert-warning">
+    No se encontraron juegos con los filtros seleccionados.
+  </div>
+
+  <div *ngIf="mensajeCarrito" class="alert alert-success">
+    {{ mensajeCarrito }}
+  </div>
+
+  <div class="row g-4">
+    <div class="col-12 col-md-6 col-lg-4" *ngFor="let juego of juegosFiltrados">
+      <app-juego-card
+        [juego]="juego"
+        (seleccionado)="agregarAlCarrito($event)">
+      </app-juego-card>
+    </div>
+  </div>
+</section>

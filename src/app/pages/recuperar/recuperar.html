@@ -1,0 +1,47 @@
+<section class="container py-5">
+  <div class="row justify-content-center">
+    <div class="col-12 col-lg-6">
+      <div class="card border-0 shadow-sm formulario-card">
+        <div class="card-body p-4">
+          <h1 class="fw-bold mb-3">Recuperar contraseña</h1>
+
+          <p class="text-muted">
+            Simulación de recuperación de cuenta mediante correo electrónico.
+          </p>
+
+          <form [formGroup]="formRecuperar" (ngSubmit)="buscar()">
+            <div class="mb-3">
+              <label class="form-label">Correo electrónico</label>
+              <input type="email" class="form-control" formControlName="correo">
+            </div>
+
+            <div class="d-flex gap-3">
+              <button type="submit" class="btn btn-primary flex-fill">
+                Buscar cuenta
+              </button>
+
+              <button type="button" class="btn btn-outline-secondary flex-fill" (click)="limpiar()">
+                Limpiar
+              </button>
+            </div>
+          </form>
+
+          <div *ngIf="buscado && usuarioEncontrado" class="alert alert-success mt-4">
+            Se encontró una cuenta asociada a:
+            <strong>{{ usuarioEncontrado.nombreCompleto }}</strong>.
+            <br>
+            En una aplicación real se enviaría un enlace de recuperación.
+          </div>
+
+          <div *ngIf="buscado && !usuarioEncontrado && formRecuperar.valid" class="alert alert-danger mt-4">
+            No existe una cuenta asociada a ese correo.
+          </div>
+
+          <div class="mt-4 text-center">
+            <a routerLink="/login">Volver al login</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

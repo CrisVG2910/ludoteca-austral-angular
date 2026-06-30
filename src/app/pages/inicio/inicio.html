@@ -1,0 +1,119 @@
+<section class="hero-store">
+  <div class="container py-5">
+    <div class="row align-items-center g-5">
+      <div class="col-12 col-lg-6">
+        <span class="hero-badge mb-3">
+          Nueva colección disponible
+        </span>
+
+        <h1 class="display-4 fw-bold hero-title">
+          Juegos de mesa para compartir momentos memorables.
+        </h1>
+
+        <p class="lead text-muted mt-3">
+          En Ludoteca Austral reunimos juegos estratégicos, familiares, cooperativos y de cartas
+          para que cada partida sea una experiencia distinta.
+        </p>
+
+        <div class="d-flex flex-column flex-sm-row gap-3 mt-4">
+          <a routerLink="/catalogo" class="btn btn-primary btn-lg">
+            Explorar catálogo
+          </a>
+
+          <a routerLink="/registro" class="btn btn-outline-dark btn-lg">
+            Crear cuenta
+          </a>
+        </div>
+
+        <div class="row g-3 mt-4">
+          <div class="col-12 col-md-4" *ngFor="let beneficio of beneficios">
+            <div class="benefit-item">
+              <span class="benefit-dot"></span>
+              <p class="mb-0">{{ beneficio }}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-12 col-lg-6">
+        <div class="hero-showcase shadow-lg">
+          <div class="showcase-card showcase-main">
+            <span class="showcase-label">Top ventas</span>
+            <h2>Catan</h2>
+            <p>Construye, negocia y conquista nuevas rutas.</p>
+          </div>
+
+          <div class="showcase-grid">
+            <div class="showcase-card small-card">
+              <span>🎨</span>
+              <strong>Dixit</strong>
+              <small>Imaginación y creatividad</small>
+            </div>
+
+            <div class="showcase-card small-card">
+              <span>🧩</span>
+              <strong>Pandemic</strong>
+              <small>Cooperación total</small>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="container py-5">
+  <div class="section-heading mb-4">
+    <span class="section-kicker">Categorías</span>
+    <h2 class="fw-bold">Encuentra tu próxima partida</h2>
+    <p class="text-muted mb-0">
+      Seleccionamos juegos para distintos estilos de jugadores.
+    </p>
+  </div>
+
+  <div class="row g-4">
+    <div class="col-12 col-md-4" *ngFor="let categoria of categorias">
+      <div class="category-card h-100">
+        <h3>{{ categoria.nombre }}</h3>
+        <p>{{ categoria.descripcion }}</p>
+        <a routerLink="/catalogo" class="btn btn-sm btn-outline-primary">
+          Ver juegos
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="container pb-5">
+  <div class="section-heading mb-4">
+    <span class="section-kicker">Recomendados</span>
+    <h2 class="fw-bold">Juegos destacados</h2>
+    <p class="text-muted mb-0">
+      Una selección inicial para comenzar tu colección.
+    </p>
+  </div>
+
+  <div class="row g-4">
+    <div class="col-12 col-md-4" *ngFor="let juego of juegosDestacados">
+      <div class="card h-100 border-0 shadow-sm game-feature-card">
+        <div class="game-cover">
+          <span>{{ juego.nombre.charAt(0) }}</span>
+        </div>
+
+        <div class="card-body">
+          <span class="badge text-bg-warning mb-2">{{ juego.categoria }}</span>
+          <h5 class="fw-bold">{{ juego.nombre }}</h5>
+          <p class="text-muted">{{ juego.descripcion }}</p>
+
+          <div class="d-flex justify-content-between align-items-center">
+            <strong>{{ juego.precio | currency:'CLP':'symbol':'1.0-0' }}</strong>
+
+            <a [routerLink]="['/juego', juego.id]" class="btn btn-sm btn-primary">
+              Ver detalle
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

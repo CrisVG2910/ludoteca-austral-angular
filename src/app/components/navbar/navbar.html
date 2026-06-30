@@ -1,0 +1,88 @@
+<div class="top-bar">
+  <div class="container d-flex flex-column flex-md-row justify-content-between align-items-center gap-2">
+    <span>🎲 Despacho a todo Chile en juegos seleccionados</span>
+    <span>Atención especializada para familias, coleccionistas y grupos de juego</span>
+  </div>
+</div>
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark shadow-sm sticky-top">
+  <div class="container">
+    <a class="navbar-brand fw-bold d-flex align-items-center gap-2" routerLink="/">
+      <span class="brand-icon">LA</span>
+      Ludoteca Austral
+    </a>
+
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#menuPrincipal"
+      aria-controls="menuPrincipal"
+      aria-expanded="false"
+      aria-label="Abrir menú">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="menuPrincipal">
+      <ul class="navbar-nav ms-auto align-items-lg-center">
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+            Inicio
+          </a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/catalogo" routerLinkActive="active">
+            Catálogo
+          </a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/carrito" routerLinkActive="active">
+            Carrito
+          </a>
+        </li>
+
+        <ng-container *ngIf="usuario$ | async as usuario; else menuInvitado">
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/perfil" routerLinkActive="active">
+              Perfil
+            </a>
+          </li>
+
+          <li class="nav-item" *ngIf="usuario.rol === 'admin'">
+            <a class="nav-link" routerLink="/admin" routerLinkActive="active">
+              Admin
+            </a>
+          </li>
+
+          <li class="nav-item">
+            <button class="btn btn-sm btn-outline-light ms-lg-3" type="button" (click)="cerrarSesion()">
+              Cerrar sesión
+            </button>
+          </li>
+        </ng-container>
+
+        <ng-template #menuInvitado>
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/registro" routerLinkActive="active">
+              Registro
+            </a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/login" routerLinkActive="active">
+              Login
+            </a>
+          </li>
+        </ng-template>
+
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/contacto" routerLinkActive="active">
+            Contacto
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
