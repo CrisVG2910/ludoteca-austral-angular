@@ -1,0 +1,44 @@
+{
+  "preventas": [
+    {
+      "id": 1,
+      "titulo": "Catan: Edición Coleccionista",
+      "categoria": "Estrategia",
+      "precio": 39990,
+      "fechaLanzamiento": "2026-08-15",
+      "estado": "Preventa",
+      "imagen": "catan.jpg",
+      "descripcion": "Nueva edición del clásico juego de estrategia, comercio y expansión."
+    },
+    {
+      "id": 2,
+      "titulo": "Dixit: Universo Ilustrado",
+      "categoria": "Familiar",
+      "precio": 32990,
+      "fechaLanzamiento": "2026-09-10",
+      "estado": "Próximamente",
+      "imagen": "dixit.jpg",
+      "descripcion": "Una edición especial enfocada en creatividad, narración e imaginación."
+    },
+    {
+      "id": 3,
+      "titulo": "Pandemic: Operación Austral",
+      "categoria": "Cooperativo",
+      "precio": 42990,
+      "fechaLanzamiento": "2026-10-05",
+      "estado": "Preventa",
+      "imagen": "pandemic.jpg",
+      "descripcion": "Juego cooperativo donde los jugadores deben trabajar juntos para resolver una crisis global."
+    },
+    {
+      "id": 4,
+      "titulo": "Dobble: Fiesta Familiar",
+      "categoria": "Cartas",
+      "precio": 14990,
+      "fechaLanzamiento": "2026-07-30",
+      "estado": "Disponible pronto",
+      "imagen": "dobble.jpg",
+      "descripcion": "Juego rápido de observación ideal para reuniones familiares y partidas cortas."
+    }
+  ]
+}

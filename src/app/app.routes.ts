@@ -11,6 +11,9 @@ import { Perfil } from './pages/perfil/perfil';
 import { Carrito } from './pages/carrito/carrito';
 import { Admin } from './pages/admin/admin';
 
+import { Preventas } from './pages/preventas/preventas';
+import { PreventasJsonServer } from './pages/preventas-json-server/preventas-json-server';
+
 export const routes: Routes = [
   { path: '', component: Inicio },
   { path: 'catalogo', component: Catalogo },
@@ -22,5 +25,9 @@ export const routes: Routes = [
   { path: 'carrito', component: Carrito },
   { path: 'admin', component: Admin },
   { path: 'contacto', component: Contacto },
+
+  { path: 'preventas', component: Preventas },
+  { path: 'preventas-json-server', component: PreventasJsonServer },
+
   { path: '**', redirectTo: '' }
 ];
