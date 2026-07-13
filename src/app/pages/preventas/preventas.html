@@ -1,16 +1,18 @@
 <section class="container py-5">
   <div class="d-flex flex-column flex-lg-row justify-content-between align-items-lg-end gap-3 mb-4">
     <div>
-      <span class="badge text-bg-warning mb-3">JSON + localStorage</span>
-      <h1 class="fw-bold">Preventas especiales</h1>
+      <span class="badge text-bg-warning mb-3">Lanzamientos exclusivos</span>
+
+      <h1 class="fw-bold">Preventas de juegos de mesa</h1>
+
       <p class="text-muted mb-0">
-        Esta vista realiza una carga inicial desde un archivo JSON y luego permite crear,
-        editar y eliminar datos de forma simulada usando localStorage.
+        Revisa los próximos lanzamientos disponibles para reserva en Ludoteca Austral.
+        Encuentra juegos estratégicos, familiares y cooperativos antes de su llegada oficial.
       </p>
     </div>
 
     <button type="button" class="btn btn-outline-secondary" (click)="restaurarDatosOriginales()">
-      Restaurar datos originales
+      Restaurar catálogo inicial
     </button>
   </div>
 
@@ -27,19 +29,31 @@
       <div class="card border-0 shadow-sm formulario-card">
         <div class="card-body p-4">
           <h2 class="h4 fw-bold mb-3">
-            {{ editando ? 'Editar preventa' : 'Crear nueva preventa' }}
+            {{ editando ? 'Editar lanzamiento' : 'Agregar nueva preventa' }}
           </h2>
+
+          <p class="text-muted small">
+            Completa los datos del juego que estará disponible próximamente en la tienda.
+          </p>
 
           <form (ngSubmit)="guardarPreventa()">
             <div class="mb-3">
-              <label class="form-label">Título</label>
-              <input type="text" class="form-control" [(ngModel)]="formulario.titulo" name="titulo">
+              <label class="form-label">Nombre del juego</label>
+              <input
+                type="text"
+                class="form-control"
+                [(ngModel)]="formulario.titulo"
+                name="titulo"
+                placeholder="Ej: Catan Edición Coleccionista">
             </div>
 
             <div class="mb-3">
               <label class="form-label">Categoría</label>
-              <select class="form-select" [(ngModel)]="formulario.categoria" name="categoria">
-                <option value="">Seleccione</option>
+              <select
+                class="form-select"
+                [(ngModel)]="formulario.categoria"
+                name="categoria">
+                <option value="">Seleccione una categoría</option>
                 <option value="Estrategia">Estrategia</option>
                 <option value="Familiar">Familiar</option>
                 <option value="Cooperativo">Cooperativo</option>
@@ -48,36 +62,65 @@
             </div>
 
             <div class="mb-3">
-              <label class="form-label">Precio</label>
-              <input type="number" class="form-control" [(ngModel)]="formulario.precio" name="precio">
+              <label class="form-label">Precio de reserva</label>
+              <input
+                type="number"
+                class="form-control"
+                [(ngModel)]="formulario.precio"
+                name="precio"
+                placeholder="Ej: 39990">
             </div>
 
             <div class="mb-3">
-              <label class="form-label">Fecha lanzamiento</label>
-              <input type="date" class="form-control" [(ngModel)]="formulario.fechaLanzamiento" name="fechaLanzamiento">
+              <label class="form-label">Fecha estimada de llegada</label>
+              <input
+                type="date"
+                class="form-control"
+                [(ngModel)]="formulario.fechaLanzamiento"
+                name="fechaLanzamiento">
             </div>
 
             <div class="mb-3">
-              <label class="form-label">Estado</label>
-              <input type="text" class="form-control" [(ngModel)]="formulario.estado" name="estado">
+              <label class="form-label">Estado de disponibilidad</label>
+              <input
+                type="text"
+                class="form-control"
+                [(ngModel)]="formulario.estado"
+                name="estado"
+                placeholder="Ej: Preventa, Próximamente, Disponible pronto">
             </div>
 
             <div class="mb-3">
-              <label class="form-label">Imagen</label>
-              <input type="text" class="form-control" [(ngModel)]="formulario.imagen" name="imagen" placeholder="catan.jpg">
+              <label class="form-label">Imagen referencial</label>
+              <input
+                type="text"
+                class="form-control"
+                [(ngModel)]="formulario.imagen"
+                name="imagen"
+                placeholder="Ej: catan.jpg">
             </div>
 
             <div class="mb-4">
-              <label class="form-label">Descripción</label>
-              <textarea class="form-control" rows="4" [(ngModel)]="formulario.descripcion" name="descripcion"></textarea>
+              <label class="form-label">Descripción comercial</label>
+              <textarea
+                class="form-control"
+                rows="4"
+                [(ngModel)]="formulario.descripcion"
+                name="descripcion"
+                placeholder="Describe brevemente por qué este juego es atractivo para los clientes.">
+              </textarea>
             </div>
 
             <div class="d-grid gap-2">
               <button type="submit" class="btn btn-primary">
-                {{ editando ? 'Actualizar preventa' : 'Guardar preventa' }}
+                {{ editando ? 'Actualizar lanzamiento' : 'Publicar preventa' }}
               </button>
 
-              <button *ngIf="editando" type="button" class="btn btn-outline-secondary" (click)="cancelarEdicion()">
+              <button
+                *ngIf="editando"
+                type="button"
+                class="btn btn-outline-secondary"
+                (click)="cancelarEdicion()">
                 Cancelar edición
               </button>
             </div>
@@ -87,12 +130,21 @@
     </div>
 
     <div class="col-12 col-lg-8">
+      <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-center gap-2 mb-3">
+        <div>
+          <h2 class="h4 fw-bold mb-1">Juegos disponibles para reserva</h2>
+          <p class="text-muted mb-0">
+            Selección de próximos lanzamientos para clientes de Ludoteca Austral.
+          </p>
+        </div>
+      </div>
+
       <div *ngIf="cargando" class="alert alert-info">
-        Cargando preventas...
+        Cargando preventas disponibles...
       </div>
 
       <div *ngIf="!cargando && preventas.length === 0" class="alert alert-warning">
-        No existen preventas disponibles.
+        Por el momento no existen preventas disponibles.
       </div>
 
       <div class="row g-4">
@@ -109,7 +161,7 @@
               </div>
 
               <p class="text-muted small mb-2">
-                {{ preventa.categoria }} · {{ preventa.fechaLanzamiento }}
+                {{ preventa.categoria }} · Llegada estimada: {{ preventa.fechaLanzamiento }}
               </p>
 
               <p class="flex-grow-1">
@@ -121,12 +173,18 @@
               </p>
 
               <div class="d-flex gap-2">
-                <button type="button" class="btn btn-sm btn-primary" (click)="editarPreventa(preventa)">
+                <button
+                  type="button"
+                  class="btn btn-sm btn-primary"
+                  (click)="editarPreventa(preventa)">
                   Editar
                 </button>
 
-                <button type="button" class="btn btn-sm btn-outline-danger" (click)="eliminarPreventa(preventa.id)">
-                  Eliminar
+                <button
+                  type="button"
+                  class="btn btn-sm btn-outline-danger"
+                  (click)="eliminarPreventa(preventa.id)">
+                  Retirar
                 </button>
               </div>
             </div>
